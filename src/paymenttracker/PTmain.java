@@ -87,7 +87,7 @@ public class PTmain {
                 System.out.println("");
                 fileDatabase.list();
                 System.out.println("\n"); 
-                i = 7;//60
+                i = 60;
             }
         }  
 	}, 0, 1000);  
@@ -147,7 +147,7 @@ public class PTmain {
         System.out.println("------------------------------" + "\n");
         System.out.println("Would you like to load values from the file?");
         System.out.println("If you want to load type: load.");
-        playOncePerMinute(7);
+        playOncePerMinute(60);
         
         while (true) {
             String command = consoleScanner.nextLine();
@@ -167,15 +167,15 @@ public class PTmain {
                     break;
                 } 
                 case "add": {
-                    System.out.println("First three letters must be one of these: USB, HKD, RMB, NZD, GBP");
+                    System.out.println("First three letters must be one of these: USD, HKD, RMB, NZD, GBP");
                     System.out.println("Input have to be like:");
-                    System.out.println("USB 1000"); 
+                    System.out.println("USD 1000"); 
                     String commandAdd = consoleScanner.nextLine();
                     addItem(commandAdd);
                     break;
                 } 
                 case "list": {
-                    System.out.println("Here is your actual databbase:" + "\n");
+                    System.out.println("Here is your actual database:" + "\n");
                     fileDatabase.list();
                     System.out.println();
                     break;
