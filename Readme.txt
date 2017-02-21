@@ -23,13 +23,9 @@ Commands used in the program:
 -help- show classic help
 -load- load value and add into database
 
-Used external libraries:
------------------------ 
-java.text.DecimalFormat; java.util.ArrayList; java.util.List; java.io.FileReader; java.io.IOException; java.io.Reader;
-java.util.Scanner; java.util.Timer; java.util.TimerTask; 
 
 Instructions how to run the application from the command line
 -------------------------------------------------------------
-Download whole directory from https://github.com/MatyRose/PaymentTracker . Unzip the directory. Open PaymentTracker-master directory. You will see classes directory, src directory, file.txt and Readme.txt. Open command line at this directory.(just copy and paste the path from directory. Type or just copy and paste:javac -d classes -cp classes src/paymenttracker/*.java
+Download & unzip or clone https://github.com/MatyRose/PaymentTracker . Open PaymentTracker-master directory. You will see classes directory, src directory, file.txt and Readme.txt. Open command line at this directory.(just copy and paste the path from directory. Type or just copy and paste:javac -d classes -cp classes src/paymenttracker/*.java
 Pres enter. After it type:java -cp classes paymenttracker.PTmain
 Program starts in the command line and you can test it.
