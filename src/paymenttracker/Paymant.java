@@ -1,24 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package paymenttracker;
+package paymentracker;
 
 /**
  *
  * @author Maty
  */
-public class Paynmant {
+public class Paymant {
     private String currency;
     private double amount;
     
     /**
-     * Constructor for Paynmant
+     * Constructor for Paymant
      * @param currency - String
      * @param amount - amount
      */
-    public Paynmant(String currency, double amount) {
+    public Paymant(String currency, double amount) {
         super();
         this.currency = currency;
         this.amount = amount;

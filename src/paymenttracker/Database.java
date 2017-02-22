@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package paymenttracker;
+package paymentracker;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -15,51 +10,8 @@ import java.util.List;
  */
 
 public class Database {
-    /**
-     * Defined Enum Currency 
-     */
-    public enum Currency {
-
-        /**
-         *USD Currency
-         */
-        USD("currency", 0),
-
-        /**
-         *RMB Currency
-         */
-        RMB("currency", 0),
-
-        /**
-         *HKD Currency
-         */
-        HDK("currency", 0),
-
-        /**
-         *NZD Currency
-         */
-        NZD("currency", 0),
-
-        /**
-         *GBP Currency
-         */
-        GBP("currency", 0);
- 
-    private String currency;
-    private double amount;
     
-    /**
-     * Currency constructor
-     * @param currency - String
-     * @param amount - double
-     */
-    private Currency(String currency, double amount) {
-        this.currency = currency;
-        this.amount = amount;
-    }
-    }
-    
-    private List<Paynmant> listOfPayments = new ArrayList<>();
+    private final List<Paymant> listOfPayments = new ArrayList<>();
     
     /**
      * Add one payment into database 
@@ -67,24 +19,24 @@ public class Database {
      * @param amount - double
      */
     public void add(String currency, double amount) {
-       Paynmant eachPayment = new Paynmant(currency, amount);
+       Paymant eachPayment = new Paymant(currency, amount);
        listOfPayments.add(eachPayment);
     }
     
     /**
-     * Adjust format of printing
+     * Counts amount in USD and prints in right format
      * @param course - double
      * @param currency - String
      * @param amount - amount
      */
     public void adjustment(double course, String currency, double amount){
         double transferAmount;
-                    transferAmount = amount/course;
-                    String doubleSize = "0.00#";
-                    DecimalFormat df = new DecimalFormat(doubleSize);
-                    int newAmount = (int) amount;
-                    System.out.println(currency + " " + newAmount + "(" +  "USD" 
-                        +  " " + df.format(transferAmount) + ")");     
+        transferAmount = amount/course;
+        String doubleSize = "0.00#";
+        DecimalFormat df = new DecimalFormat(doubleSize);
+        int newAmount = (int) amount;
+        System.out.println(currency + " " + newAmount + "(" +  "USD" 
+        +  " " + df.format(transferAmount) + ")");     
     }
     
     /**
@@ -163,12 +115,9 @@ public class Database {
      */
     public int sumOfCurrency(String currencyIn) {
         int sum = 0;
-        boolean ok;
         
         for (int i = 0; i < listOfPayments.size(); i++) {
-            ok = listOfPayments.get(i).getCurrency().equals(currencyIn);
-            
-            if (ok) {
+            if (listOfPayments.get(i).getCurrency().equals(currencyIn)) {
                 sum += listOfPayments.get(i).getAmount();
             }               
         }
@@ -176,4 +125,3 @@ public class Database {
     }   
 }
     
-

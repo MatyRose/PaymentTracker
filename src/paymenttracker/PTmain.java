@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package paymenttracker;
+package paymentracker;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -36,7 +31,6 @@ public class PTmain {
      * Creates instance of Timer
      */
     public static final Timer timer = new Timer();
-    
   
   /**
    * Reads and add all currency with amount from file
@@ -53,7 +47,8 @@ public class PTmain {
         }  
     }
     return fileDatabase;
-}
+    }
+  
     /**
      * Loads file
      * @param nameOfFile - String
@@ -63,7 +58,15 @@ public class PTmain {
         Reader reader = null;
             try {
                 reader = new FileReader(nameOfFile);
-                readFile(reader,fileDatabase);
+                String currentlyChosenLine;
+                try (BufferedReader inputBufferedReader = new BufferedReader(reader)) {
+                    while ((currentlyChosenLine = inputBufferedReader.readLine()) != null) {
+                            addItem(currentlyChosenLine);
+                    }  
+                }catch(IOException e){
+                    System.out.println("File can´t be readed");
+                }
+                
                 System.out.println();
                 reader.close();
                 System.out.println("Payments have been loaded.");
@@ -76,15 +79,15 @@ public class PTmain {
      * Timer lists database once per minute
      * @param i - int
      */
-    public static void playOncePerMinute(int i) {
+    public static void playOncePerMinute() {
 	timer.scheduleAtFixedRate(new TimerTask() {
-	int i;//60
+	int i;
         
         @Override
 	public void run() {
             i--;
             if (i < 0) {
-                System.out.println("");
+                System.out.println();
                 fileDatabase.list();
                 System.out.println("\n"); 
                 i = 60;
@@ -93,7 +96,7 @@ public class PTmain {
 	}, 0, 1000);  
     }
     
-     /**
+   /**
    * Correct and add item into database
    * @param item - String
      * @param database - Database
@@ -102,23 +105,27 @@ public class PTmain {
     String currency;
     String amount;
     String delimiters = "\\s";
-    String[] tokensVal = item.split(delimiters);
-    currency = tokensVal[0];
-    amount = tokensVal[1];
-    Pattern patternCurrency = Pattern.compile("[A-Z]{3}");
-                                
-    try {
+    
+    if(item.length()<5){
+        System.out.println("Wrong input, it is too short");
+    }else{
+        try {
+        String[] tokensVal = item.split(delimiters);
+        currency = tokensVal[0];
+        amount = tokensVal[1];
+        Pattern patternCurrency = Pattern.compile("[A-Z]{3}");
         Matcher matchCurrency = patternCurrency.matcher(currency);
-        Integer.parseInt(amount);
-                    
+        Integer.parseInt(amount);//Because we enter int and i try if in the file is value type of int
+                     
         if (matchCurrency.find()) {
             int newAmount = Integer.parseInt(amount);
             fileDatabase.add(currency, newAmount);
         } 
-    }
-    catch(NumberFormatException e) {
-        System.out.println("File can not be loaded.");
-    }  
+        }
+        catch(NumberFormatException e) {
+            System.out.println("File can not be loaded.");
+        }  
+    }                           
   } 
   
   /**
@@ -128,26 +135,27 @@ public class PTmain {
    * @throws IOException
    * @throws Exception 
    */  
-  public static void readFile(Reader reader, Database fileDatabase) throws IOException, Exception {
-    String currentlyChosenLine;
-    try (BufferedReader inputBufferedReader = new BufferedReader(reader)) {
-        while ((currentlyChosenLine = inputBufferedReader.readLine()) != null) {
-            addItem(currentlyChosenLine);
-        }  
-    }
-   // return fileDatabase;
-}   
+    public static void readFile(Reader reader, Database fileDatabase) throws IOException, Exception {
+        String currentlyChosenLine;
+        try (BufferedReader inputBufferedReader = new BufferedReader(reader)) {
+            while ((currentlyChosenLine = inputBufferedReader.readLine()) != null) {
+                addItem(currentlyChosenLine);
+            }  
+        }
+    }   
    
     /**
      * Starts program with menu
      * @throws Exception 
      */
-    public static void startProgram() throws Exception {
+    public static void runProgram() throws Exception {
         System.out.println("Welcome to the Payment Tracker");
-        System.out.println("------------------------------" + "\n");
-        System.out.println("Would you like to load values from the file?");
-        System.out.println("If you want to load type: load.");
-        playOncePerMinute(60);
+        System.out.println("------------------------------");
+        System.out.println();
+        System.out.println("Program is controlled by commands.");
+        System.out.println("If you want to load from the file type: load.");
+        System.out.println("For all instructions type help.");
+        playOncePerMinute();
         
         while (true) {
             String command = consoleScanner.nextLine();
@@ -175,15 +183,18 @@ public class PTmain {
                     break;
                 } 
                 case "list": {
-                    System.out.println("Here is your actual database:" + "\n");
+                    System.out.println("Here is your actual database:");
+                    System.out.println();
                     fileDatabase.list();
                     System.out.println();
                     break;
                 } 
                 case "help": {
                     System.out.println("Payment Tracker helper:");
-                    System.out.println("......................" + "\n");
-                    System.out.println("Here is complete list with commnads:" + "\n");
+                    System.out.println("......................"); 
+                    System.out.println();
+                    System.out.println("Here is complete list with commnads:");
+                    System.out.println();
                     System.out.println("These commands can be used anytime.");
                     System.out.println("load - for load values from the file.");
                     System.out.println("add - for add values into database");
@@ -199,8 +210,7 @@ public class PTmain {
             }
             System.out.println();
             System.out.println("Do you wont to add values? If yes, type add.");
-        }
-        
+        }  
     }
     
     /**
@@ -208,6 +218,6 @@ public class PTmain {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException, Exception {
-        startProgram();
+        runProgram();
     } 
 }
