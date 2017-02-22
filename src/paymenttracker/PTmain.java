@@ -96,7 +96,8 @@ public class PTmain {
     
         try {
             if(!item.contains(delimiters)){
-               
+                System.out.println("Wrong input");
+                return;
             }
         } catch (Exception e) {
               System.out.println("Wrong input" + e);  
