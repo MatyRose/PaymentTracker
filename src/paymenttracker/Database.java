@@ -45,12 +45,7 @@ public class Database {
     public void list() {
         String currency;
         double amount;
-        double sumUSD;
-        double sumRMB;
-        double sumHKD;
-        double sumNZD;
-        double sumGBP;
-        
+      
         double courseRMB = 6.35727908455;
         double courseHKD = 34.802784222;
         double courseNZD = 24.45;
@@ -61,21 +56,7 @@ public class Database {
         String HKD = "HKD";
         String NZD = "NZD";
         String GBP = "GBP";
-        boolean ok;
- 
-        List<Double> allSums = new ArrayList<>();
-        sumUSD = sumOfCurrency(USD);
-        sumRMB = sumOfCurrency(RMB);
-        sumHKD = sumOfCurrency(HKD);
-        sumNZD = sumOfCurrency(NZD);
-        sumGBP = sumOfCurrency(GBP);
-   
-        allSums.add(sumUSD);
-        allSums.add(sumRMB);
-        allSums.add(sumHKD);
-        allSums.add(sumNZD);
-        allSums.add(sumGBP);
-        
+
         List<String> allCurrencyes = new ArrayList<>();
         allCurrencyes.add(USD);
         allCurrencyes.add(RMB);
@@ -83,9 +64,9 @@ public class Database {
         allCurrencyes.add(NZD);
         allCurrencyes.add(GBP);
         
-        for (int i = 0; i < allSums.size(); i++) {
+        for (int i = 0; i < allCurrencyes.size(); i++) {
             currency = allCurrencyes.get(i);
-            amount = allSums.get(i);
+            amount = sumOfCurrency(currency);
             
             if (amount != 0) {
                 if (USD.equals(currency)) {
