@@ -1,7 +1,6 @@
 Paynment Tracker
 ----------------
-Program keeps a record of payments.
-Program is controlled by commands.
+Program keeps a record of payments. Program is controlled by commands.
 Each payment includes a currency and amount. Program prints every 60s lists sums of all payments. If the net amount is 0, currency is not displayed. Inputs are typen into command line. When program starts you can load amounts and currencyes from file by typing "load"(everytime means without quotation marks). After it type name of file with extension. For example "file.txt" which is included. If you wont other file, must put it into PaymentTracker directory. The format of the file is one or more lines with Currency Code Amount like in the Sample:
 USD 1000
 HKD 100
