@@ -94,8 +94,12 @@ public class PTmain {
         String amount;
         String delimiters = "\\s";
     
-        if(!item.contains(delimiters)){
-            System.out.println("Wrong input");
+        try {
+            if(!item.contains(delimiters)){
+               
+            }
+        } catch (Exception e) {
+              System.out.println("Wrong input" + e);  
         }
         
         if(item.length() < 5 ){
