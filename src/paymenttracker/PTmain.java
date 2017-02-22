@@ -32,25 +32,8 @@ public class PTmain {
      */
     public static final Timer timer = new Timer();
   
-  /**
-   * Reads and add all currency with amount from file
-   * @param reader - Reader
-   * @return - Database
-   * @throws IOException
-   * @throws Exception 
-   */  
-  public static Database readFile(Reader reader) throws IOException, Exception {
-    String currentlyChosenLine;
-    try (BufferedReader inputBufferedReader = new BufferedReader(reader)) {
-        while ((currentlyChosenLine = inputBufferedReader.readLine()) != null) {
-            addItem(currentlyChosenLine);
-        }  
-    }
-    return fileDatabase;
-    }
-  
     /**
-     * Loads file
+     * Reads and loads file
      * @param nameOfFile - String
      * @throws Exception 
      */
