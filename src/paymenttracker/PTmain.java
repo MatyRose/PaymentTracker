@@ -45,7 +45,7 @@ public class PTmain {
                 
                 try (BufferedReader inputBufferedReader = new BufferedReader(reader)) {
                     while ((currentlyChosenLine = inputBufferedReader.readLine()) != null) {
-                        addItem(currentlyChosenLine);
+                            addItem(currentlyChosenLine);
                     }  
                 }catch(IOException e){
                     System.out.println("Untreated Exception: " + e.getMessage());
@@ -95,15 +95,16 @@ public class PTmain {
         String delimiters = "\\s";
     
         try {
-            if((item.length() < 5)|| (!item.contains(delimiters))){
+            if((item.length() < 5)|| item.contains(delimiters) ){
                 System.out.println("Wrong input, it is too short");
+                //return;
             }else{
-            	String[] tokensVal = item.split(delimiters);
-            	currency = tokensVal[0];
-            	amount = tokensVal[1];
-            	Pattern patternCurrency = Pattern.compile("[A-Z]{3}");
-            	Matcher matchCurrency = patternCurrency.matcher(currency);
-            	Integer.parseInt(amount);//Because we enter int and i try if in the file is value type of int
+            String[] tokensVal = item.split(delimiters);
+            currency = tokensVal[0];
+            amount = tokensVal[1];
+            Pattern patternCurrency = Pattern.compile("[A-Z]{3}");
+            Matcher matchCurrency = patternCurrency.matcher(currency);
+            Integer.parseInt(amount);//Because we enter int and i try if in the file is value type of int
                     
             if (matchCurrency.find()) {
                 int newAmount = Integer.parseInt(amount);
@@ -111,12 +112,13 @@ public class PTmain {
             }
             }
             } 
-        	catch (NumberFormatException e) {
-            	System.out.println("Item can not be add. " + e.getMessage());
-       		}
-        	catch (Exception e) {
-            	System.out.println("Untreated Exception: " + e.getMessage());
-        }                           
+        catch (NumberFormatException e) {
+            System.out.println("Item can not be add. " + e.getMessage());
+        }
+        catch (Exception e) {
+            System.out.println("Untreated Exception: " + e.getMessage());
+        }
+                                  
     } 
  
     /**
@@ -193,6 +195,14 @@ public class PTmain {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException, Exception {
+       try{
         runProgram();
+       }catch(Exception e) {
+                System.out.println("Untreated Exception: " + e.getMessage());
+            }{
+           
+           
+       }
+        
     } 
 }
