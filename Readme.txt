@@ -25,6 +25,6 @@ Commands used in the program:
 Instructions how to run the application from the command line
 -------------------------------------------------------------
 Download & unzip or clone https://github.com/MatyRose/PaymentTracker . Open PaymentTracker-master directory. You will see classes directory, src directory, file.txt and Readme.txt. Open command line at this directory.(just copy and paste the path from directory. Type:javac -d classes -cp classes src/paymenttracker/*.java
-Pres enter. After it type:java -cp classes paymenttracker.PTmain
+Pres enter. After it type:java -cp classes paymentracker.PTmain
 Program starts in the command line and you can test it.
  
