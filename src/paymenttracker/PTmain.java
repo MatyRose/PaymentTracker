@@ -45,7 +45,7 @@ public class PTmain {
                 
                 try (BufferedReader inputBufferedReader = new BufferedReader(reader)) {
                     while ((currentlyChosenLine = inputBufferedReader.readLine()) != null) {
-                            addItem(currentlyChosenLine);
+                        addItem(currentlyChosenLine);
                     }  
                 }catch(IOException e){
                     System.out.println("Untreated Exception: " + e.getMessage());
@@ -111,13 +111,12 @@ public class PTmain {
             }
             }
             } 
-        catch (NumberFormatException e) {
-            System.out.println("Item can not be add. " + e.getMessage());
-        }
-        catch (Exception e) {
-            System.out.println("Untreated Exception: " + e.getMessage());
-        }
-                                  
+        	catch (NumberFormatException e) {
+            	System.out.println("Item can not be add. " + e.getMessage());
+       		}
+        	catch (Exception e) {
+            	System.out.println("Untreated Exception: " + e.getMessage());
+        }                           
     } 
  
     /**
@@ -194,14 +193,6 @@ public class PTmain {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException, Exception {
-       try{
         runProgram();
-       }catch(Exception e) {
-                System.out.println("Untreated Exception: " + e.getMessage());
-            }{
-           
-           
-       }
-        
     } 
 }
